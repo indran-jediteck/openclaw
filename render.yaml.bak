@@ -1,8 +1,7 @@
 services:
   - type: web
     name: openclaw
-    image:
-      url: ghcr.io/indran-jediteck/openclaw:latest
+    runtime: docker
     plan: standard
     healthCheckPath: /health
     envVars:
