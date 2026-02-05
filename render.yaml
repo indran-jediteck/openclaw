@@ -2,7 +2,7 @@ services:
   - type: web
     name: openclaw
     image:
-      url: ghcr.io/indran-jediteck/openclaw:latest
+      url: ghcr.io/openclaw/openclaw:latest
     plan: standard
     healthCheckPath: /health
     envVars:
