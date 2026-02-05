@@ -1,8 +1,7 @@
 services:
   - type: web
     name: openclaw
-    image:
-      url: ghcr.io/openclaw/openclaw:latest
+    image: ghcr.io/openclaw/openclaw:latest
     plan: standard
     healthCheckPath: /health
     envVars:
