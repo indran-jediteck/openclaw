@@ -3,7 +3,7 @@ services:
     runtime: image
     name: openclaw
     image:
-      url: ghcr.io/indran-jediteck/openclaw:render-fix
+      url: ghcr.io/indran-jediteck/openclaw:latest
     plan: standard
     healthCheckPath: /health
     envVars:
