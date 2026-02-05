@@ -1,8 +1,9 @@
 services:
   - type: web
+    runtime: image
     name: openclaw
     image:
-      imagePath: ghcr.io/openclaw/openclaw:latest
+      url: ghcr.io/openclaw/openclaw:latest
     plan: standard
     healthCheckPath: /health
     envVars:
