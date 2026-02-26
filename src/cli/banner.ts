@@ -1,9 +1,8 @@
-import { resolveCommitHash } from "../infra/git-commit.js";
 import { visibleWidth } from "../terminal/ansi.js";
 import { isRich, theme } from "../terminal/theme.js";
 import { BRAND } from "../branding.js";
 import { hasRootVersionAlias } from "./argv.js";
-import { pickTagline, type TaglineOptions } from "./tagline.js";
+import { formatCliTagline, type TaglineOptions } from "./tagline.js";
 
 type BannerOptions = TaglineOptions & {
   argv?: string[];
@@ -37,33 +36,17 @@ const hasVersionFlag = (argv: string[]) =>
   argv.some((arg) => arg === "--version" || arg === "-V") || hasRootVersionAlias(argv);
 
 export function formatCliBannerLine(version: string, options: BannerOptions = {}): string {
-  const commit = options.commit ?? resolveCommitHash({ env: options.env });
-  const commitLabel = commit ?? "unknown";
-  const tagline = pickTagline(options);
   const rich = options.richTty ?? isRich();
-  const title = `◆ ${BRAND.productName}`;
-  const prefix = "◆ ";
   const columns = options.columns ?? process.stdout.columns ?? 120;
-  const plainFullLine = `${title} ${version} (${commitLabel}) — ${tagline}`;
-  const fitsOnOneLine = visibleWidth(plainFullLine) <= columns;
+  const plainLine1 = `${BRAND.productName} ${version}`;
+  const plainLine2 = "by JediTeck";
+  const fitsOnOneLine = visibleWidth(plainLine1) <= columns;
   if (rich) {
-    if (fitsOnOneLine) {
-      return `${theme.heading(title)} ${theme.info(version)} ${theme.muted(
-        `(${commitLabel})`,
-      )} ${theme.muted("—")} ${theme.accentDim(tagline)}`;
-    }
-    const line1 = `${theme.heading(title)} ${theme.info(version)} ${theme.muted(
-      `(${commitLabel})`,
-    )}`;
-    const line2 = `${" ".repeat(prefix.length)}${theme.accentDim(tagline)}`;
+    const line1 = fitsOnOneLine ? `${theme.heading(BRAND.productName)} ${theme.info(version)}` : plainLine1;
+    const line2 = theme.muted(plainLine2);
     return `${line1}\n${line2}`;
   }
-  if (fitsOnOneLine) {
-    return plainFullLine;
-  }
-  const line1 = `${title} ${version} (${commitLabel})`;
-  const line2 = `${" ".repeat(prefix.length)}${tagline}`;
-  return `${line1}\n${line2}`;
+  return formatCliTagline(version);
 }
 
 const BRAND_ASCII = [

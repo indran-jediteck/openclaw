@@ -65,6 +65,7 @@ import {
 import { buildExternalLinkRel, EXTERNAL_LINK_TARGET } from "./external-link.ts";
 import { icons } from "./icons.ts";
 import { normalizeBasePath, TAB_GROUPS, subtitleForTab, titleForTab } from "./navigation.ts";
+import { BRAND } from "./branding.ts";
 import { renderAgents } from "./views/agents.ts";
 import { renderChannels } from "./views/channels.ts";
 import { renderChat } from "./views/chat.ts";
@@ -236,7 +237,7 @@ export function renderApp(state: AppViewState) {
               <img src=${basePath ? `${basePath}/favicon.svg` : "/favicon.svg"} alt="LynkAI" />
             </div>
             <div class="brand-text">
-              <div class="brand-title">OPENCLAW</div>
+              <div class="brand-title">${BRAND.productName}</div>
               <div class="brand-sub">Gateway Dashboard</div>
             </div>
           </div>
@@ -289,7 +290,7 @@ export function renderApp(state: AppViewState) {
           <div class="nav-group__items">
             <a
               class="nav-item nav-item--external"
-              href="https://docs.openclaw.ai"
+              href=${BRAND.docsUrl}
               target=${EXTERNAL_LINK_TARGET}
               rel=${buildExternalLinkRel()}
               title="${t("common.docs")} (opens in new tab)"
@@ -1135,6 +1136,9 @@ export function renderApp(state: AppViewState) {
             : nothing
         }
       </main>
+      <footer class="shell-footer" aria-label="Brand attribution">
+        <span class="shell-footer__text">${BRAND.productName} by JediTeck</span>
+      </footer>
       ${renderExecApprovalPrompt(state)}
       ${renderGatewayUrlConfirmation(state)}
     </div>

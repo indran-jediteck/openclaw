@@ -7,15 +7,17 @@
   --shell-gap: 16px;
   --shell-nav-width: 220px;
   --shell-topbar-height: 56px;
+  --shell-footer-height: 28px;
   --shell-focus-duration: 200ms;
   --shell-focus-ease: var(--ease-out);
   height: 100vh;
   display: grid;
   grid-template-columns: var(--shell-nav-width) minmax(0, 1fr);
-  grid-template-rows: var(--shell-topbar-height) 1fr;
+  grid-template-rows: var(--shell-topbar-height) 1fr var(--shell-footer-height);
   grid-template-areas:
     "topbar topbar"
-    "nav content";
+    "nav content"
+    "footer footer";
   gap: 0;
   animation: dashboard-enter 0.4s var(--ease-out);
   transition: grid-template-columns var(--shell-focus-duration) var(--shell-focus-ease);
@@ -49,7 +51,7 @@
 }
 
 .shell--onboarding {
-  grid-template-rows: 0 1fr;
+  grid-template-rows: 0 1fr var(--shell-footer-height);
 }
 
 .shell--onboarding .topbar {
@@ -513,6 +515,22 @@
   flex-shrink: 0;
 }
 
+.shell-footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.shell-footer__text {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
 /* ===========================================
    Grid Utilities
    =========================================== */
@@ -570,11 +588,12 @@
     --shell-pad: 12px;
     --shell-gap: 12px;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto 1fr var(--shell-footer-height);
     grid-template-areas:
       "topbar"
       "nav"
-      "content";
+      "content"
+      "footer";
   }
 
   .nav {
