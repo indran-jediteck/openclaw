@@ -11,6 +11,10 @@ export const TAB_GROUPS = [
   { label: "settings", tabs: ["config", "debug", "logs"] },
 ] as const;
 
+export const TAB_ALIAS_TO_ROUTE = {
+  aiReadiness: "overview",
+} as const;
+
 export type Tab =
   | "agents"
   | "overview"

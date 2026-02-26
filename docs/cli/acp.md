@@ -8,7 +8,7 @@ title: "acp"
 
 # acp
 
-Run the ACP (Agent Client Protocol) bridge that talks to a OpenClaw Gateway.
+Run the ACP (Agent Client Protocol) bridge that talks to a LynkAI Gateway.
 
 This command speaks ACP over stdio for IDEs and forwards prompts to the Gateway
 over WebSocket. It keeps ACP sessions mapped to Gateway session keys.
@@ -16,22 +16,22 @@ over WebSocket. It keeps ACP sessions mapped to Gateway session keys.
 ## Usage
 
 ```bash
-openclaw acp
+lynkai acp
 
 # Remote Gateway
-openclaw acp --url wss://gateway-host:18789 --token <token>
+lynkai acp --url wss://gateway-host:18789 --token <token>
 
 # Remote Gateway (token from file)
-openclaw acp --url wss://gateway-host:18789 --token-file ~/.openclaw/gateway.token
+lynkai acp --url wss://gateway-host:18789 --token-file ~/.lynkai/gateway.token
 
 # Attach to an existing session key
-openclaw acp --session agent:main:main
+lynkai acp --session agent:main:main
 
 # Attach by label (must already exist)
-openclaw acp --session-label "support inbox"
+lynkai acp --session-label "support inbox"
 
 # Reset the session key before the first prompt
-openclaw acp --session agent:main:main --reset-session
+lynkai acp --session agent:main:main --reset-session
 ```
 
 ## ACP client (debug)
@@ -40,13 +40,13 @@ Use the built-in ACP client to sanity-check the bridge without an IDE.
 It spawns the ACP bridge and lets you type prompts interactively.
 
 ```bash
-openclaw acp client
+lynkai acp client
 
 # Point the spawned bridge at a remote Gateway
-openclaw acp client --server-args --url wss://gateway-host:18789 --token-file ~/.openclaw/gateway.token
+lynkai acp client --server-args --url wss://gateway-host:18789 --token-file ~/.lynkai/gateway.token
 
-# Override the server command (default: openclaw)
-openclaw acp client --server "node" --server-args openclaw.mjs acp --url ws://127.0.0.1:19001
+# Override the server command (default: lynkai)
+lynkai acp client --server "node" --server-args lynkai.mjs acp --url ws://127.0.0.1:19001
 ```
 
 Permission model (client debug mode):
@@ -59,25 +59,25 @@ Permission model (client debug mode):
 ## How to use this
 
 Use ACP when an IDE (or other client) speaks Agent Client Protocol and you want
-it to drive a OpenClaw Gateway session.
+it to drive a LynkAI Gateway session.
 
 1. Ensure the Gateway is running (local or remote).
 2. Configure the Gateway target (config or flags).
-3. Point your IDE to run `openclaw acp` over stdio.
+3. Point your IDE to run `lynkai acp` over stdio.
 
 Example config (persisted):
 
 ```bash
-openclaw config set gateway.remote.url wss://gateway-host:18789
-openclaw config set gateway.remote.token <token>
+lynkai config set gateway.remote.url wss://gateway-host:18789
+lynkai config set gateway.remote.token <token>
 ```
 
 Example direct run (no config write):
 
 ```bash
-openclaw acp --url wss://gateway-host:18789 --token <token>
+lynkai acp --url wss://gateway-host:18789 --token <token>
 # preferred for local process safety
-openclaw acp --url wss://gateway-host:18789 --token-file ~/.openclaw/gateway.token
+lynkai acp --url wss://gateway-host:18789 --token-file ~/.lynkai/gateway.token
 ```
 
 ## Selecting agents
@@ -87,9 +87,9 @@ ACP does not pick agents directly. It routes by the Gateway session key.
 Use agent-scoped session keys to target a specific agent:
 
 ```bash
-openclaw acp --session agent:main:main
-openclaw acp --session agent:design:main
-openclaw acp --session agent:qa:bug-123
+lynkai acp --session agent:main:main
+lynkai acp --session agent:design:main
+lynkai acp --session agent:qa:bug-123
 ```
 
 Each ACP session maps to a single Gateway session key. One agent can have many
@@ -103,9 +103,9 @@ Add a custom ACP agent in `~/.config/zed/settings.json` (or use Zed’s Settings
 ```json
 {
   "agent_servers": {
-    "OpenClaw ACP": {
+    "LynkAI ACP": {
       "type": "custom",
-      "command": "openclaw",
+      "command": "lynkai",
       "args": ["acp"],
       "env": {}
     }
@@ -118,9 +118,9 @@ To target a specific Gateway or agent:
 ```json
 {
   "agent_servers": {
-    "OpenClaw ACP": {
+    "LynkAI ACP": {
       "type": "custom",
-      "command": "openclaw",
+      "command": "lynkai",
       "args": [
         "acp",
         "--url",
@@ -136,7 +136,7 @@ To target a specific Gateway or agent:
 }
 ```
 
-In Zed, open the Agent panel and select “OpenClaw ACP” to start a thread.
+In Zed, open the Agent panel and select “LynkAI ACP” to start a thread.
 
 ## Session mapping
 
@@ -183,7 +183,7 @@ Security note:
 ### `acp client` options
 
 - `--cwd <dir>`: working directory for the ACP session.
-- `--server <command>`: ACP server command (default: `openclaw`).
+- `--server <command>`: ACP server command (default: `lynkai`).
 - `--server-args <args...>`: extra arguments passed to the ACP server.
 - `--server-verbose`: enable verbose logging on the ACP server.
 - `--verbose, -v`: verbose client logging.

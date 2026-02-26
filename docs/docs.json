@@ -1,14 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "OpenClaw",
+  "name": "LynkAI",
   "description": "Self-hosted gateway that connects WhatsApp, Telegram, Discord, iMessage, and more to AI coding agents. Run a single Gateway process on your own machine and message your AI assistant from anywhere.",
   "theme": "mint",
   "icons": {
     "library": "lucide"
   },
   "logo": {
-    "light": "/assets/pixel-lobster.svg",
-    "dark": "/assets/pixel-lobster.svg"
+    "light": "/assets/lynkai-logo.svg",
+    "dark": "/assets/lynkai-logo.svg"
   },
   "fonts": {
     "body": {
@@ -18,11 +18,11 @@
       "family": "DM Sans"
     }
   },
-  "favicon": "/assets/pixel-lobster.svg",
+  "favicon": "/assets/lynkai-logo.svg",
   "colors": {
-    "primary": "#FF5A36",
-    "dark": "#FF5A36",
-    "light": "#FF8A6B"
+    "primary": "#0B5FFF",
+    "dark": "#0B5FFF",
+    "light": "#00A3A3"
   },
   "styling": {
     "codeblocks": {
@@ -36,12 +36,12 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/openclaw/openclaw",
+        "href": "https://github.com/lynkai/lynkai",
         "icon": "github"
       },
       {
         "label": "Releases",
-        "href": "https://github.com/openclaw/openclaw/releases",
+        "href": "https://github.com/lynkai/lynkai/releases",
         "icon": "package"
       }
     ]
@@ -265,15 +265,15 @@
     },
     {
       "source": "/clawd",
-      "destination": "/start/openclaw"
+      "destination": "/start/lynkai"
     },
     {
       "source": "/start/clawd",
-      "destination": "/start/openclaw"
+      "destination": "/start/lynkai"
     },
     {
       "source": "/start/clawd/",
-      "destination": "/start/openclaw"
+      "destination": "/start/lynkai"
     },
     {
       "source": "/start/pairing",
@@ -818,7 +818,7 @@
               },
               {
                 "group": "Overview",
-                "pages": ["start/showcase"]
+                "pages": ["start/docs-directory"]
               },
               {
                 "group": "Core concepts",
@@ -835,7 +835,7 @@
               },
               {
                 "group": "Guides",
-                "pages": ["start/openclaw"]
+                "pages": ["start/lynkai"]
               }
             ]
           },
@@ -1307,7 +1307,7 @@
               },
               {
                 "group": "Community",
-                "pages": ["start/lore"]
+                "pages": ["start/docs-directory"]
               },
               {
                 "group": "Environment and debugging",
@@ -1349,7 +1349,7 @@
               },
               {
                 "group": "概览",
-                "pages": ["zh-CN/start/showcase"]
+                "pages": ["zh-CN/start/docs-directory"]
               },
               {
                 "group": "核心概念",
@@ -1365,7 +1365,7 @@
               },
               {
                 "group": "指南",
-                "pages": ["zh-CN/start/openclaw"]
+                "pages": ["zh-CN/start/lynkai"]
               }
             ]
           },
@@ -1831,7 +1831,7 @@
               },
               {
                 "group": "社区",
-                "pages": ["zh-CN/start/lore"]
+                "pages": ["zh-CN/start/docs-directory"]
               },
               {
                 "group": "环境与调试",

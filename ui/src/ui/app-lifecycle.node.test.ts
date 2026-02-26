@@ -7,7 +7,7 @@ function createHost() {
     client: { stop: vi.fn() },
     connected: true,
     tab: "chat",
-    assistantName: "OpenClaw",
+    assistantName: "LynkAI",
     assistantAvatar: null,
     assistantAgentId: null,
     chatHasAutoScrolled: false,
